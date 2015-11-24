@@ -2,7 +2,7 @@
 
 ### SF Bay Daily Timelapse Movie Player
 
-Link: [Daily SF Bay Timelapse Movies From The Berkeley Hills] (http://www.disequilibrium.com/live)
+Link: [Daily SF Bay Timelapse Movies From The Berkeley Hills] (http://www.disequilibrium.com/plain)
 
 #### Technology Used
 
