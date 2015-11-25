@@ -2,22 +2,18 @@ console.log('\'Allo \'Allo!'); // eslint-disable-line no-console
 /*global videojs*/
 
 var videoTimelapse = {
-
     
   playerInitSetup: function(baseurl) {
 
     videoTimelapse.baseURL = baseurl;
-    videoTimelapse.vjplayer = videojs('myElement', {
-      'controlBar': {
-        'playToggle': false,
-        'volumeMenuButton': false
-      }
-    });
-
-    videoTimelapse.vjplayer.ready(function(){
-      this.src(baseurl+'movies/today.mp4');
-//      this.poster('poster2.png');
-    });
+    videoTimelapse.vjplayer = videojs('myElement',
+      { 'controlBar': 
+        {
+          'playToggle': false,
+          'volumeMenuButton': false
+        }
+    }) 
+    videoTimelapse.vjplayer.src(baseurl+'today.mp4');
   },
 
   calendarPlaylist: function() {
@@ -36,8 +32,7 @@ var videoTimelapse = {
       var output = buttonDateLabel +
         '<span class="glyphicon glyphicon-play pull-right"></span>';
       $('#currentmovie').html(output);
-      videoTimelapse.vjplayer.src(videoTimelapse.baseURL + 'movies/' + movieFilename );
-//      videoTimelapse.vjplayer.play();
+      videoTimelapse.vjplayer.src(videoTimelapse.baseURL + movieFilename );
     });
   },
 
@@ -50,7 +45,6 @@ var videoTimelapse = {
 
     videoTimelapse.vjplayer.on('ended',function() {
       buttonChangeTo('repeat');
-//      this.posterImage.show();
     });
 
     videoTimelapse.vjplayer.on('seeking', function() {
@@ -83,8 +77,13 @@ var videoTimelapse = {
 
 }
 
-//  Pass blank quotes for locally hosted files or full path to parent directory with a movies subdirectory 
-videoTimelapse.playerInitSetup('/cam/');
+//  Pass full URL to playerInitSetup for location of movies. If local just supply the path name to movie directectory. 
+//  Use 'http://www.disequilibrium.com/cam/movies' if web app is not on same server as www.disequilibrium.com 
+//  or use '/cam/movies' if movie directory is on same server as web app
+//  or 'http://192.168.2.92/cam/movies' to point to home development web server
+videoTimelapse.playerInitSetup('/cam/movies/');
+
 videoTimelapse.calendarPlaylist();
+
 videoTimelapse.playlistEventSetup();
 
